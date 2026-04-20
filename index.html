@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crises Alert</title>
+  <link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+</head>
+<body>
+
+  
+  <header class="header">
+    <h1>⚠️ Crisis Alert</h1>
+    <!-- <span class="status">🟢 System Online</span> -->
+  </header>
+
+  
+    <main class="container">
+
+    
+        <section class="panel">
+          <h2>Report Incident</h2>
+
+          <textarea id="inputBox" placeholder="What is your emergency..."></textarea>
+
+          <div class="quick-buttons">
+                <button onclick="fillSample('Fire in kitchen')">🔥 Fire</button>
+                <button onclick="fillSample('Guest fainted in lobby')">🏥 Medical</button>
+          </div>
+        <div class="acts">
+              <button class="primary-btn" onclick="analyseIncident()">Analyse Incident</button>
+            <button class="primary-btn crisis">Huge Emergency</button>
+        </div>
+        </section>
+        
+    
+        <section class="panel output-panel">
+
+
+            <div class="card">
+              <h3 id="type">type: </h3>
+              <span id="severity" class="badge">severity:--</span>
+              <p id="location">location: </p>
+            </div>
+
+          
+            <div class="card">
+              <h4>Summary</h4>
+              <p id="summary">No data yet...</p>
+            </div>
+
+          
+            <div class="card highlight">
+              <h4>Immediate Action</h4>
+              <p id="action">--</p>
+            </div>
+
+
+            <div class="card">
+              <h4>Emergency Steps</h4>
+              <ol id="steps"></ol>
+            </div>
+
+            <button class="secondary-btn" onclick="generateReport()">Generate Report</button>
+
+
+                <div class="card">
+                  <h4>Incident Report</h4>
+                  <pre id="reportOutput">--</pre>
+                  <button onclick="copyReport()">Copy</button>
+                </div>
+
+        </section>
+
+    </main>
+
+
+</body>
+</html>
