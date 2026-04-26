@@ -1,8 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+from dotenv import load_dotenv
 from google import genai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+APIKEY = os.getenv("GCP_API_KEY")
 
 client = genai.Client(api_key="APIKEY") #hide key later
 
