@@ -1,11 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import google.generativeai as genai
 
-genai.configure(api_key="YOUR_API_KEY")
+from google import genai
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key="AQ.Ab8RN6L5Ih2Go6eo35eVxUoXtMDOQeHtH3SGJUCfmC2v64_qIg") #hide key later
 
 app = FastAPI()
 
@@ -23,7 +22,11 @@ class Incident(BaseModel):
 @app.post("/analyze")
 async def analyze_incident(data: Incident):
 
-    prompt = f"""
+    try:
+
+        response = client.models.generate_content(
+            model="models/gemini-2.0-flash-lite",
+            contents=f"""
 Analyze this emergency incident:
 
 {data.text}
@@ -41,9 +44,16 @@ Return ONLY valid JSON in this format:
     ""
   ]
 }}
+Return raw JSON only.
 """
-    response = model.generate_content(prompt)
+        )
 
-    return {
-        "result": response.text
-    }
+        return {
+            "result": response.text
+        }
+
+    except Exception as e:
+
+        return {
+            "error": str(e)
+        }
