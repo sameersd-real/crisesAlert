@@ -9,7 +9,7 @@ import os
 load_dotenv()
 APIKEY = os.getenv("GCP_API_KEY")
 
-client = genai.Client(api_key="APIKEY") #hide key later
+client = genai.Client(api_key = APIKEY) #hide key later
 
 app = FastAPI()
 
@@ -41,6 +41,7 @@ Return ONLY valid JSON in this format:
 {{
   "type": "",
   "severity": "",
+  "location":"",
   "summary": "",
   "action": "",
   "steps": [
